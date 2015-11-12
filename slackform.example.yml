@@ -1,0 +1,13 @@
+typeform_api_key:
+typeform_uid:
+
+slack_api_key:
+slack_team:
+slack_channels:
+  - CH1
+  - CH2
+
+typeform_field_ids:
+  email: textfield_1234
+  first_name: textfield_1234
+  last_name: textfield_1234
