@@ -17,6 +17,10 @@ slack_inviter = Slackform::SlackInviter.new(
     config.typeform_field_ids
 )
 
+if config.slack_notifier_enabled?
+  slack_inviter.notifier = Slackform::Notifier::Slack.new(config.slack_notifications_webhook)
+end
+
 typeform_api = Slackform::ApiGateway::Typeform.new(api_key: config.typeform_api_key, form_uid: config.typeform_uid)
 
 responses = typeform_api.responses(since: last_timestamp_file.read.chomp)

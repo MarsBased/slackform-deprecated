@@ -1,7 +1,6 @@
 module Slackform
   module ApiGateway
-    class Typeform
-      include HTTParty
+    class Typeform < Base
 
       base_uri "https://api.typeform.com/v0/form"
 
@@ -13,8 +12,7 @@ module Slackform
       end
 
       def responses(params)
-        # TODO: what happens in case of error
-        self.class.get("/#{@form_uid}", query: clean_params(params)).parsed_response['responses']
+        make_get("/#{@form_uid}", query: clean_params(params))['responses']
       end
 
       private

@@ -29,6 +29,14 @@ module Slackform
       configuration['typeform_field_ids']
     end
 
+    def slack_notifier_enabled?
+      configuration['enable_slack_notifications']
+    end
+
+    def slack_notifications_webhook
+      configuration['slack_notifications_webhook']
+    end
+
     private
 
     def configuration

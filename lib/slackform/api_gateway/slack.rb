@@ -1,7 +1,6 @@
 module Slackform
   module ApiGateway
-    class Slack
-      include HTTParty
+    class Slack < Base
 
       def initialize(config)
         @token      = config.fetch(:token)
@@ -21,7 +20,7 @@ module Slackform
             set_active: true,
             _attempts: 1
         }
-        self.class.post("/users.admin.invite?t=#{Time.now.to_i}", {body: data})
+        make_post("/users.admin.invite?t=#{Time.now.to_i}", {body: data})
       end
 
       def channels_list
@@ -29,8 +28,9 @@ module Slackform
             token: @token,
             exclude_archived: 1
         }
-        self.class.get('/channels.list', {query: data}).parsed_response
+        make_get('/channels.list', {query: data})
       end
+
     end
   end
 end
