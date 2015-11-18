@@ -36,7 +36,7 @@ module Slackform
       end
     end
 
-    desc "slack_channels", "Get information about all Slack channels and their ID on the team. This is useful if you want to specify a list of channels to invite new members to."
+    desc "list_slack_channels", "Get information about all Slack channels and their ID on the team. This is useful if you want to specify a list of channels to invite new members to."
     config_file_option
     def list_slack_channels
       config = configuration(options[:config_file])
