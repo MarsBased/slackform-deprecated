@@ -1,7 +1,7 @@
 module Slackform
   class SlackformCLI < Thor
 
-    LAST_TIMESTAMP_FILE_PATH = '.last_timestamp'
+    DEFAULT_LAST_TIMESTAMP_FILE_PATH = '.last_timestamp'
 
     def self.config_file_option
       option :config_file,
@@ -13,9 +13,12 @@ module Slackform
 
     desc "invite", "check new Typeform answers and invite a new member to the Slack team for each new answer. If it finds .last_timestamp file from previous runs it will only check Typeform answers submitted after that timestamp."
     config_file_option
+    option :last_timestamp_file,
+           desc: 'File where the last Typeform answer timestamp is stored',
+           aliases: '-t'
     def invite
       config = configuration(options[:config_file])
-      last_timestamp_file = open_last_timestamp_file
+      last_timestamp_file = open_last_timestamp_file(options[:last_timestamp_file] || DEFAULT_LAST_TIMESTAMP_FILE_PATH)
 
       slack_inviter = Slackform::SlackInviter.new(slack_api_gateway(config), config.typeform_field_ids)
 
@@ -57,12 +60,8 @@ module Slackform
       Slackform::ApiGateway::Typeform.new(api_key: config.typeform_api_key, form_uid: config.typeform_uid)
     end
 
-    def open_last_timestamp_file
-      if File.file?(LAST_TIMESTAMP_FILE_PATH)
-        File.open(LAST_TIMESTAMP_FILE_PATH, 'r+')
-      else
-        File.open(LAST_TIMESTAMP_FILE_PATH, 'w+')
-      end
+    def open_last_timestamp_file(path)
+      File.file?(path) ? File.open(path, 'r+') : File.open(path, 'w+')
     end
 
   end
