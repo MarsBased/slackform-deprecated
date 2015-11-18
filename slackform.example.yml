@@ -11,3 +11,6 @@ typeform_field_ids:
   email: textfield_1234
   first_name: textfield_1234
   last_name: textfield_1234
+
+enable_slack_notifications: false
+slack_notifications_webhook:
