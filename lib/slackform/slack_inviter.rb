@@ -25,10 +25,6 @@ module Slackform
       handle_invite_response(invitation, response)
     end
 
-    def channels_name_and_id_list
-      @slack_api.channels_list['channels'].map { |c| "#{c['name']} => #{c['id']}" }
-    end
-
     private
 
     def parse_answer_data(form_answer)

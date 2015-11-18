@@ -61,4 +61,5 @@ Now you need to configure the integration:
 
 ## Installation
 
-## cron stuff
+## TOWRITE: cron stuff
+## TOWRITE: How it actually works, .last_timestamp and stuff
