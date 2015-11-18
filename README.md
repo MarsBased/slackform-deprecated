@@ -74,8 +74,16 @@ Usually you will need to run the invite command periodically every X minutes, so
 If you want to use cron to run the process every 5 minutes, you can create a cron job like the following:
 
 ```
-*/5 * * * * slackform -c ABSOLUTE_PATH_TO_YOUR_CONFIGURATION_FILE [--last-timestamp-file PATH_TO_LAST_TIMESTAMP_FILE]
+*/5 * * * * slackform invite -c ABSOLUTE_PATH_TO_YOUR_CONFIGURATION_FILE [--last-timestamp-file PATH_TO_LAST_TIMESTAMP_FILE]
 ```
+
+Depending on your setup, you may need to specify the full path to the slackform binary instead of just ```slackform``
+
+You can also run it as a new bash session so that it uses your user's environment, otherwise it will use cron's environment and may not work.
+```
+*/5 * * * * [your_user] /bin/bash -l -c 'slackform invite -c ABSOLUTE_PATH_TO_YOUR_CONFIGURATION_FILE [--last-timestamp-file PATH_TO_LAST_TIMESTAMP_FILE]'
+```
+
 
 
 ## Configuration
