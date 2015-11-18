@@ -14,3 +14,5 @@ require 'slackform/slack_api_client'
 require 'slackform/configuration'
 
 require 'slackform/slackform_cli'
+
+require 'slackform/version'
