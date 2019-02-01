@@ -1,3 +1,9 @@
+# Important Notice
+
+This project has been deprecated and it's no longer maintained. The API that was being used by the project is no longer active and it won't work.
+
+--------
+
 # Slackform
 
 Slackform is a command line tool to automatically invite new members to a Slack team from the answers of a Typeform.
